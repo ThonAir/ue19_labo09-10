@@ -25,6 +25,6 @@ jobs:
           docker push ghcr.io/${{ github.repository }}/ue19_labo09-10:latest
 
       - name: Scan for Vulnerabilities with Trivy
-        uses: aquasecurity/trivy-action@v0.5.0
+        uses: aquasecurity/trivy-action@v0
         with:
           image-ref: ghcr.io/${{ github.repository }}/ue19_labo09-10:latest
