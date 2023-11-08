@@ -19,5 +19,5 @@ jobs:
       - name: Build and Push Docker Container
         run: |
           # Assurez-vous que tous les noms sont en minuscules
-          docker build -t ghcr.io/${{ github.repository }}/conteneuro:latest .
-          docker push ghcr.io/${{ github.repository }}/conteneuro:latest
+          docker build -t ghcr.io/thonair/ue19_labo09-10/conteneuro:latest .
+          docker push ghcr.io/thonair/ue19_labo09-10/conteneuro:latest
