@@ -16,8 +16,10 @@ jobs:
       - name: Login to GitHub Container Registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
-      - name: Build and Push Docker Container
+      - name: Use Docker Token
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}  # Reference the DOCKER_TOKEN secret
         run: |
-          # Assurez-vous que tous les noms sont en minuscules
-          docker build -t ghcr.io/thonair/ue19_labo09-10/conteneuro:latest .
-          docker push ghcr.io/thonair/ue19_labo09-10/conteneuro:latest
+          docker login ghcr.io -u ${{ github.repository_owner }} -p $DOCKER_TOKEN
+          docker build -t ghcr.io/${{ github.repository }}/conteneuro:latest .
+          docker push ghcr.io/${{ github.repository }}/conteneuro:latest
