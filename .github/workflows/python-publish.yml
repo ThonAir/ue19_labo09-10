@@ -3,7 +3,7 @@ name: Build and Publish Docker Container
 on:
   push:
     branches:
-      - main  # Change this to the default branch of your repository
+      - main
 
 jobs:
   build-and-publish:
@@ -15,12 +15,16 @@ jobs:
 
       - name: Login to GitHub Container Registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-      
+
       - name: Use Docker Token
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: |
-          docker login ghcr.io -u thonair -p $DOCKER_TOKEN
+          docker login ghcr.io -u ${{ github.repository_owner }} -p $DOCKER_TOKEN
           docker build -t ghcr.io/${{ github.repository }}/ue19_labo09-10:latest .
           docker push ghcr.io/${{ github.repository }}/ue19_labo09-10:latest
 
+      - name: Scan for Vulnerabilities with Trivy
+        uses: aquasecurity/trivy-action@v0.5.0
+        with:
+          image-ref: ghcr.io/${{ github.repository }}/ue19_labo09-10:latest
