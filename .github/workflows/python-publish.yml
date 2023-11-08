@@ -22,5 +22,6 @@ jobs:
         run: |
           docker login ghcr.io -u ${{ github.repository_owner }} -p $DOCKER_TOKEN
           # Assurez-vous que le nom du répertoire est en minuscules
-          docker build -t ghcr.io/${{ github.repository }}/conteneuro:latest .
-          docker push ghcr.io/${{ github.repository }}/conteneuro:latest
+          docker build -t ghcr.io/${{ github.repository }}/monprojetdocker:latest .
+          docker push ghcr.io/${{ github.repository }}/monprojetdocker:latest
+
