@@ -18,5 +18,6 @@ jobs:
 
       - name: Build and Push Docker Container
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/${{ github.workflow }}:latest .
-          docker push ghcr.io/${{ github.repository }}/${{ github.workflow }}:latest
+          # Remarquez que nous utilisons un nom explicite pour l'image Docker
+          docker build -t ghcr.io/${{ github.repository }}/conteneur0910:latest .
+          docker push ghcr.io/${{ github.repository }}/conteneur0910:latest
