@@ -18,6 +18,6 @@ jobs:
 
       - name: Build and Push Docker Container
         run: |
-          # Remarquez que nous utilisons un nom explicite pour l'image Docker
+          # Assurez-vous que tous les noms sont en minuscules
           docker build -t ghcr.io/${{ github.repository }}/conteneuro:latest .
           docker push ghcr.io/${{ github.repository }}/conteneuro:latest
